@@ -12,15 +12,23 @@ test('renders without errors', ()=>{
 test('renders the contact form header', ()=> {
 	render(<ContactForm />);
 
+	// Identify form header and check if it exists, is truthy and says 'Contact Form'
     const header = screen.queryByText(/contact form/i);
-
 	expect(header).toBeInTheDocument();
 	expect(header).toBeTruthy();
     expect(header).toHaveTextContent(/contact form/i);
 });
 
 test('renders ONE error message if user enters less then 5 characters into firstname.', async () => {
+	render(<ContactForm />);
 	
+	// Identify firstName input field and type 'Joe'
+	const firstName = screen.queryByLabelText(/first name/i)
+	userEvent.type(firstName, 'Joe');
+
+	// Identify error message and check if it exists
+	const output = screen.queryByText(/Error/i);
+	expect(output).toBeInTheDocument();
 });
 
 test('renders THREE error messages if user enters no values into any fields.', async () => {
