@@ -32,7 +32,15 @@ test('renders ONE error message if user enters less then 5 characters into first
 });
 
 test('renders THREE error messages if user enters no values into any fields.', async () => {
-    
+    render(<ContactForm />);
+	
+	// Identify submit button and click it
+	const button = screen.getByRole('button');
+	userEvent.click(button);
+
+	// Identify error messages and check if the array of errors is equal to 3
+	const output = screen.queryAllByText(/Error/i);
+	expect(output.length).toBe(3);
 });
 
 test('renders ONE error message if user enters a valid first name and last name but no email.', async () => {
