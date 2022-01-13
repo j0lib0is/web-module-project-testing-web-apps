@@ -42,7 +42,7 @@ As a developer, you will be writing tests for every component. As we've learned,
 #### Test Brainstorming
 
 -   [x] Run and play around with the form interface.
--   [ ] Write out a list of possible test cases for this application within Understanding-questions.md.
+-   [x] Write out a list of possible test cases for this application within Understanding-questions.md.
 
 #### Complete a case that tests if:
 

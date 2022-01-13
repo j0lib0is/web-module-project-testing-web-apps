@@ -5,6 +5,12 @@ import userEvent from '@testing-library/user-event';
 
 import ContactForm from './ContactForm';
 
+const fnInput = 'Joseph';
+const lnInput = 'Dirt';
+const eInput = 'joe@email.com';
+const mInput = 'Hello world!';
+const errorInput = 'x';
+
 test('renders without errors', ()=>{
     render(<ContactForm />);
 });
@@ -22,9 +28,9 @@ test('renders the contact form header', ()=> {
 test('renders ONE error message if user enters less then 5 characters into firstname.', async () => {
 	render(<ContactForm />);
 	
-	// Identify firstName input field and type 'Joe'
+	// Identify firstName input field and type an invalid first name
 	const firstName = screen.queryByLabelText(/first name/i)
-	userEvent.type(firstName, 'Joe');
+	userEvent.type(firstName, errorInput);
 
 	// Identify error message and check if it exists
 	const output = screen.queryByText(/Error: firstName must have at least 5 characters./i);
@@ -48,11 +54,11 @@ test('renders ONE error message if user enters a valid first name and last name 
 
 	// Identify firstName input field and type 'Joseph'
 	const firstName = screen.queryByLabelText(/first name/i);
-	userEvent.type(firstName, 'Joseph');
+	userEvent.type(firstName, fnInput);
 	
 	// Identify lastName input field and type 'Dirt'
 	const lastName = screen.queryByLabelText(/last name/i);
-	userEvent.type(firstName, 'Dirt');
+	userEvent.type(firstName, lnInput);
 	
 	// Identify submit button and click it
 	const button = screen.getByRole('button');
@@ -66,9 +72,9 @@ test('renders ONE error message if user enters a valid first name and last name 
 test('renders "email must be a valid email address" if an invalid email is entered', async () => {
 	render(<ContactForm />);
 
-    // Identify email input field and type 'joeiscool.com'
+    // Identify email input field and type an invalid email address
 	const email = screen.queryByLabelText(/email/i);
-	userEvent.type(email, 'joeiscool.com');
+	userEvent.type(email, errorInput);
 
 	// Identify error message and check if it exists
 	const output = screen.queryByText(/email must be a valid email address./i);
@@ -80,11 +86,11 @@ test('renders "lastName is a required field" if an last name is not entered and 
 
     // Identify firstName input field and type 'Joseph'
 	const firstName = screen.queryByLabelText(/first name/i);
-	userEvent.type(firstName, 'Joseph');
+	userEvent.type(firstName, fnInput);
 
 	// Identify email input field and type 'joe@email.com'
 	const email = screen.queryByLabelText(/email/i);
-	userEvent.type(email, 'joe@email.com');
+	userEvent.type(email, lnInput);
 
 	// Identify submit button and click it
 	const button = screen.getByRole('button');
@@ -100,15 +106,15 @@ test('renders all firstName, lastName and email text when submitted. Does NOT re
 
     // Identify firstName input field and type 'Joseph'
 	const firstName = screen.queryByLabelText(/first name/i);
-	userEvent.type(firstName, 'Joseph');
+	userEvent.type(firstName, fnInput);
 
 	// Identify lastName input field and type 'Dirt'
 	const lastName = screen.queryByLabelText(/last name/i);
-	userEvent.type(firstName, 'Dirt');
+	userEvent.type(firstName, lnInput);
 
 	// Identify email input field and type 'joe@email.com'
 	const email = screen.queryByLabelText(/email/i);
-	userEvent.type(email, 'joe@email.com');
+	userEvent.type(email, eInput);
 
 	// Identify submit button and click it
 	const button = screen.getByRole('button');
@@ -145,19 +151,19 @@ test('renders all fields text when all fields are submitted.', async () => {
 
     // Identify firstName input field and type 'Joseph'
 	const firstName = screen.queryByLabelText(/first name/i);
-	userEvent.type(firstName, 'Joseph');
+	userEvent.type(firstName, fnInput);
 
 	// Identify lastName input field and type 'Dirt'
 	const lastName = screen.queryByLabelText(/last name/i);
-	userEvent.type(firstName, 'Dirt');
+	userEvent.type(firstName, lnInput);
 
 	// Identify email input field and type 'joe@email.com'
 	const email = screen.queryByLabelText(/email/i);
-	userEvent.type(email, 'joe@email.com');
+	userEvent.type(email, eInput);
 	
 	// Identify message input field and type 'Hello world!'
 	const message = screen.queryByLabelText(/message/i);
-	userEvent.type(message, 'Hello world!');
+	userEvent.type(message, mInput);
 
 	// Identify submit button and click it
 	const button = screen.getByRole('button');
