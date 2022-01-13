@@ -141,5 +141,50 @@ test('renders all firstName, lastName and email text when submitted. Does NOT re
 });
 
 test('renders all fields text when all fields are submitted.', async () => {
+	render(<ContactForm />);
+
+    // Identify firstName input field and type 'Joseph'
+	const firstName = screen.queryByLabelText(/first name/i);
+	userEvent.type(firstName, 'Joseph');
+
+	// Identify lastName input field and type 'Dirt'
+	const lastName = screen.queryByLabelText(/last name/i);
+	userEvent.type(firstName, 'Dirt');
+
+	// Identify email input field and type 'joe@email.com'
+	const email = screen.queryByLabelText(/email/i);
+	userEvent.type(email, 'joe@email.com');
 	
+	// Identify message input field and type 'Hello world!'
+	const message = screen.queryByLabelText(/message/i);
+	userEvent.type(message, 'Hello world!');
+
+	// Identify submit button and click it
+	const button = screen.getByRole('button');
+	userEvent.click(button);
+
+	// Wait for form submission to finish, identify first name and check if it exists
+	waitFor(async ()=> {
+        // const outputFirstName = screen.queryByText('Joseph');
+        const outputFirstName = screen.queryByTestId('firstnameDisplay');
+        expect(outputFirstName).toBeInTheDocument();
+    });
+
+	// Wait for form submission to finish, identify last name and check if it exists
+	waitFor(async ()=> {
+        const outputLastName = screen.queryByTestId('lastnameDisplay');
+        expect(outputLastName).toBeInTheDocument();
+    });
+
+	// Wait for form submission to finish, identify email and check if it exists
+	waitFor(async ()=> {
+        const outputEmail = screen.queryByTestId('emailDisplay');
+        expect(outputEmail).toBeInTheDocument();
+    });
+
+	// Wait for form submission to finish, identify message and check if it exists
+	waitFor(async ()=> {
+        const outputMessage = screen.queryByTestId('messageDisplay');
+        expect(outputMessage).toBeInTheDocument();
+    });
 });

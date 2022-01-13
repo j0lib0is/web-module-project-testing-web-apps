@@ -54,10 +54,10 @@ As a developer, you will be writing tests for every component. As we've learned,
 -   [x] the component renders the text _"email must be a valid email address"_ if an invalid email address is typed into the email field.
 -   [x] the component renders the text _"lastName is a required field"_ the form is submitted without a last name.
 -   [x] the component renders the firstname, lastname and email text when submitted with valued fields and does **not** render a message value when one is not entered into the message field.
--   [ ] renders all fields when the user submits with valid text filled in for all fields.
+-   [x] renders all fields when the user submits with valid text filled in for all fields.
 
 ## Stretch goals
 
 -   Look at your test cases in Understanding-questions and see if there are any that you have not completed.
--   From the this list or from your own mind, add in at least one more new testcase.
--   There is alot of state management within our component in this project! See if you can separate the form and error validation code into their own hooks.
+-   From the this list or from your own mind, add in at least one more new test case.
+-   There is a lot of state management within our component in this project! See if you can separate the form and error validation code into their own hooks.
